@@ -26,4 +26,25 @@ defmodule BankConceptWeb.AccountsView do
       inserted_at: inserted_at
     }
   end
+
+  def render("update.json", %{
+        account: %Account{
+          id: id,
+          name: name,
+          email: email,
+          updated_at: updated_at,
+          inserted_at: inserted_at
+        }
+      }) do
+    %{
+      message: "Account updated",
+      account: %{
+        id: id,
+        name: name,
+        email: email,
+        updated_at: updated_at,
+        inserted_at: inserted_at
+      }
+    }
+  end
 end

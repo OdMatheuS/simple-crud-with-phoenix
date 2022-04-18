@@ -23,6 +23,12 @@ defmodule BankConceptWeb.AccountsController do
     |> handle_response(conn, "show.json", :ok)
   end
 
+  def update(conn, params) do
+    params
+    |> BankConcept.update_account()
+    |> handle_response(conn, "update.json", :ok)
+  end
+
   def create(conn, params) do
     params
     |> BankConcept.create_account()

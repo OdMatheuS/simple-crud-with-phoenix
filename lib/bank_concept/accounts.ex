@@ -3,12 +3,7 @@ defmodule BankConcept.Account do
   import Ecto.Changeset
 
   @primary_key {:id, Ecto.UUID, autogenerate: true}
-
-  def build(params) do
-    params
-    |> changeset()
-    |> apply_action(:insert)
-  end
+  @required_params [:name, :password, :email, :cpf]
 
   schema "accounts" do
     field :name, :string
@@ -19,9 +14,17 @@ defmodule BankConcept.Account do
     timestamps()
   end
 
-  @required_params [:name, :password, :email, :cpf]
-  def changeset(params) do
-    %__MODULE__{}
+  def build(params) do
+    params
+    |> changeset()
+    |> apply_action(:insert)
+  end
+
+  def changeset(params), do: create_changeset(%__MODULE__{}, params)
+  def changeset(account, params), do: create_changeset(account, params)
+
+  defp create_changeset(account_or_module, params) do
+    account_or_module
     |> cast(params, @required_params)
     |> validate_required(@required_params)
     |> validate_length(:password, min: 8)
