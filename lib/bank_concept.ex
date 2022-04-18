@@ -1,9 +1,11 @@
 defmodule BankConcept do
   @moduledoc """
-  BankConcept keeps the contexts that define your domain
-  and business logic.
+  My facade:
 
-  Contexts are also responsible for managing your data, regardless
-  if it comes from the database, an external API or others.
+  every time I call my 'create_account',
+  I will delegate to the Create module, and there it will call fn 'call
   """
+  alias BankConcept.Account
+
+  defdelegate create_account(params), to: Account.Create, as: :call
 end
