@@ -4,6 +4,12 @@ defmodule BankConcept.Account do
 
   @primary_key {:id, Ecto.UUID, autogenerate: true}
 
+  def build(params) do
+    params
+    |> changeset()
+    |> apply_action(:insert)
+  end
+
   schema "accounts" do
     field :name, :string
     field :password_hash, :string
