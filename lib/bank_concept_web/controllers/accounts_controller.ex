@@ -17,17 +17,23 @@ defmodule BankConceptWeb.AccountsController do
 
   defp handle_delete({:error, _reason} = error, _conn), do: error
 
+  def show(conn, %{"id" => id}) do
+    id
+    |> BankConcept.get_account()
+    |> handle_response(conn, "show.json", :ok)
+  end
+
   def create(conn, params) do
     params
     |> BankConcept.create_account()
-    |> handle_response(conn)
+    |> handle_response(conn, "create.json", :created)
   end
 
-  defp handle_response({:ok, account}, conn) do
+  defp handle_response({:ok, account}, conn, view, status) do
     conn
-    |> put_status(:created)
-    |> render("create.json", account: account)
+    |> put_status(status)
+    |> render(view, account: account)
   end
 
-  defp handle_response({:error, _changeset} = error, _conn), do: error
+  defp handle_response({:error, _changeset} = error, _conn, _view, _status), do: error
 end

@@ -9,4 +9,5 @@ defmodule BankConcept do
 
   defdelegate create_account(params), to: Account.Create, as: :call
   defdelegate delete_account(params), to: Account.Delete, as: :call
+  defdelegate get_account(params), to: Account.Get, as: :call
 end
