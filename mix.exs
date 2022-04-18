@@ -44,7 +44,8 @@ defmodule BankConcept.MixProject do
       {:gettext, "~> 0.18"},
       {:jason, "~> 1.2"},
       {:plug_cowboy, "~> 2.5"},
-      {:argon2_elixir, "~> 3.0.0"}
+      {:argon2_elixir, "~> 3.0.0"},
+      {:guardian, "~> 2.0"}
     ]
   end
 
