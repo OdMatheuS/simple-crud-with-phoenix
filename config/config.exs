@@ -40,3 +40,7 @@ config :phoenix, :json_library, Jason
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
 import_config "#{config_env()}.exs"
+
+config :bank_concept, BankConceptWeb.Auth.Guardian,
+  issuer: "bank_concept",
+  secret_key: "1Ki9D5XKQJja3o0nhlF3WuRLav0crZkbrT0w57bDapE6zOw6x4iMzk8owbj9t4i8"
