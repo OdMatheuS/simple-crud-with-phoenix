@@ -7,6 +7,7 @@ defmodule BankConceptWeb.Router do
 
   scope "/api", BankConceptWeb do
     pipe_through :api
+    resources "/accounts", AccountsController, only: [:create, :show, :delete, :update]
   end
 
   # Enables LiveDashboard only for development
@@ -36,5 +37,9 @@ defmodule BankConceptWeb.Router do
 
       forward "/mailbox", Plug.Swoosh.MailboxPreview
     end
+  end
+
+  scope "/", BankConceptWeb do
+    pipe_through :api
   end
 end
