@@ -1,0 +1,199 @@
+{
+	"info": {
+		"_postman_id": "940bd728-6fda-4527-8c28-23ff790d51d2",
+		"name": "CRUD-Accounts-Phoenix",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "http://localhost:4000/api/accounts",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"cpf\": \"00000000000\",\n    \"email\": \"foobar@gmail.com\",\n    \"name\": \"doctor-racket\",\n    \"password\": \"12345678\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:4000/api/accounts",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"api",
+						"accounts"
+					]
+				},
+				"description": "create account"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:4000/api/accounts/:id",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:4000/api/accounts/:id",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"api",
+						"accounts",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "some_id"
+						}
+					]
+				},
+				"description": "delete account"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:4000/api/accounts/:id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.sendRequest(\"https://postman-echo.com/get\", function (err, response) {",
+							"    console.log(response.json());",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:4000/api/accounts/:id",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"api",
+						"accounts",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "some_id"
+						}
+					]
+				},
+				"description": "get account by id"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:4000/api/accounts/:id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"foobar@gmail.com\",\n    \"password\":\"12345678\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:4000/api/accounts/:id",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"api",
+						"accounts",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "some_id"
+						}
+					]
+				},
+				"description": "update account by id"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:4000/api/accounts/signin",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:4000/api/accounts/signin/:id/:password",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"api",
+						"accounts",
+						"signin",
+						":id",
+						":password"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "some_id"
+						},
+						{
+							"key": "password",
+							"value": "some_password"
+						}
+					]
+				},
+				"description": "login with id and password and return auth token"
+			},
+			"response": []
+		}
+	]
+}
