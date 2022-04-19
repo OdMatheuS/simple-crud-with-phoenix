@@ -5,10 +5,19 @@ defmodule BankConceptWeb.Router do
     plug :accepts, ["json"]
   end
 
+  pipeline :auth do
+    plug BankConceptWeb.Auth.Pipeline
+  end
+
   scope "/api", BankConceptWeb do
     pipe_through :api
-    resources "/accounts", AccountsController, only: [:create, :show, :delete, :update]
+    post "/accounts", AccountsController, :create
     post "/accounts/signin", AccountsController, :sign_in
+  end
+
+  scope "/api", BankConceptWeb do
+    pipe_through [:api, :auth]
+    resources "/accounts", AccountsController, only: [:show, :delete, :update]
   end
 
   # Enables LiveDashboard only for development

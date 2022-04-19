@@ -44,3 +44,7 @@ import_config "#{config_env()}.exs"
 config :bank_concept, BankConceptWeb.Auth.Guardian,
   issuer: "bank_concept",
   secret_key: "1Ki9D5XKQJja3o0nhlF3WuRLav0crZkbrT0w57bDapE6zOw6x4iMzk8owbj9t4i8"
+
+config :bank_concept, BankConceptWeb.Auth.Pipeline,
+  module: BankConceptWeb.Auth.Guardian,
+  error_handler: BankConceptWeb.Auth.ErrorHandler
