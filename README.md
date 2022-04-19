@@ -12,6 +12,7 @@ Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
 
 
 ## Routes Reference
+- Note: I added my postman collection that I used during development. it's in the "extra_collections" folder
 
 #### Create Account
 
