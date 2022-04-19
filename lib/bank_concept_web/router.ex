@@ -8,6 +8,7 @@ defmodule BankConceptWeb.Router do
   scope "/api", BankConceptWeb do
     pipe_through :api
     resources "/accounts", AccountsController, only: [:create, :show, :delete, :update]
+    post "/accounts/signin", AccountsController, :sign_in
   end
 
   # Enables LiveDashboard only for development

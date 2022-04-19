@@ -2,6 +2,12 @@ defmodule BankConceptWeb.AccountsView do
   use BankConceptWeb, :view
   alias BankConcept.Account
 
+  def render("sign_in.json", %{token: token}) do
+    %{
+      token: token
+    }
+  end
+
   def render("create.json", %{
         account: %Account{id: id, name: name, email: email, inserted_at: inserted_at},
         token: token
