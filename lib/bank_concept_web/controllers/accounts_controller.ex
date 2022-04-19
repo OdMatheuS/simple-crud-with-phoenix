@@ -1,5 +1,6 @@
 defmodule BankConceptWeb.AccountsController do
   use BankConceptWeb, :controller
+  alias BankConceptWeb.Auth.Guardian
 
   action_fallback BankConceptWeb.FallbackController
 
@@ -30,9 +31,12 @@ defmodule BankConceptWeb.AccountsController do
   end
 
   def create(conn, params) do
-    params
-    |> BankConcept.create_account()
-    |> handle_response(conn, "create.json", :created)
+    with {:ok, account} <- BankConcept.create_account(params),
+         {:ok, token, _claims} <- Guardian.encode_and_sign(account) do
+      conn
+      |> put_status(:created)
+      |> render("create.json", %{account: account, token: token})
+    end
   end
 
   defp handle_response({:ok, account}, conn, view, status) do

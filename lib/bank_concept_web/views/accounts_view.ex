@@ -3,7 +3,8 @@ defmodule BankConceptWeb.AccountsView do
   alias BankConcept.Account
 
   def render("create.json", %{
-        account: %Account{id: id, name: name, email: email, inserted_at: inserted_at}
+        account: %Account{id: id, name: name, email: email, inserted_at: inserted_at},
+        token: token
       }) do
     %{
       message: "Account created",
@@ -12,7 +13,8 @@ defmodule BankConceptWeb.AccountsView do
         name: name,
         email: email,
         inserted_at: inserted_at
-      }
+      },
+      token: token
     }
   end
 
